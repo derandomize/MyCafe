@@ -65,24 +65,18 @@ flowchart TD
   subgraph OwnerFlow [Владелец кафе]
     D1[Dashboard]
     M1[Редактор меню]
-    B1[Настройки брендинга]
     P1[Настройка бонусной программы]
     A1[Аналитика]
-    G1[Генерация и публикация приложений]
     S1[Просмотр заказов и уведомлений]
 
     R -->|Owner| D1
     D1 --> M1
-    D1 --> B1
     D1 --> P1
     D1 --> A1
-    D1 --> G1
     D1 --> S1
     M1 --> D1
-    B1 --> D1
     P1 --> D1
     A1 --> D1
-    G1 --> D1
     S1 --> D1
   end
 
@@ -127,26 +121,22 @@ flowchart TD
 
   %% Общие экраны
   Settings[Настройки профиля]
-  Help[Помощь / FAQ]
   Logout[Выход из аккаунта]
 
   D1 --> Settings
   D2 --> Settings
   D3 --> Settings
 
-  D1 --> Help
-  D2 --> Help
-  D3 --> Help
-
   Settings --> D1
   Settings --> D2
   Settings --> D3
 
-  Help --> D1
-  Help --> D2
-  Help --> D3
-
   Settings --> Logout
   Logout --> W
 
+
 ```
+
+## Ссылка на wireframe-макеты
+
+  - Link - https://ninjamock.com/s/3QZ6QZx
