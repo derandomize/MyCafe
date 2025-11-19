@@ -2267,16 +2267,16 @@ graph TB
 graph TB
     LB[Load Balancer]
     
-    subgraph Blue - Current
-        BLUE1[App v1.0]
-        BLUE2[App v1.0]
-        BLUE3[App v1.0]
+    subgraph BLUE["Blue Environment - Current v1.0"]
+        BLUE1[App Instance 1]
+        BLUE2[App Instance 2]
+        BLUE3[App Instance 3]
     end
     
-    subgraph Green - New
-        GREEN1[App v2.0]
-        GREEN2[App v2.0]
-        GREEN3[App v2.0]
+    subgraph GREEN["Green Environment - New v2.0"]
+        GREEN1[App Instance 1]
+        GREEN2[App Instance 2]
+        GREEN3[App Instance 3]
     end
     
     DB[(Database)]
@@ -2287,38 +2287,59 @@ graph TB
     BLUE1 & BLUE2 & BLUE3 --> DB
     GREEN1 & GREEN2 & GREEN3 -.-> DB
     
-    note1[1. Deploy new version to Green]
-    note2[2. Test Green environment]
-    note3[3. Switch traffic to Green]
-    note4[4. Keep Blue for rollback]
+    style BLUE fill:#90CAF9
+    style GREEN fill:#C5E1A5
+    style DB fill:#FFE082
 ```
+
+**Процесс Blue-Green развертывания:**
+1. Deploy new version to Green environment
+2. Test Green environment thoroughly
+3. Switch traffic from Blue to Green
+4. Keep Blue for quick rollback if needed
 
 ##### Canary Deployment
 
 ```mermaid
-graph LR
-    subgraph Phase 1 - 5%
-        LB1[Load Balancer] -->|95%| OLD1[Current Version]
-        LB1 -->|5%| NEW1[New Version]
+graph TB
+    subgraph P1["Phase 1 - 5%"]
+        LB1[Load Balancer]
+        OLD1[Current Version]
+        NEW1[New Version]
+        LB1 -->|95%| OLD1
+        LB1 -->|5%| NEW1
     end
     
-    subgraph Phase 2 - 25%
-        LB2[Load Balancer] -->|75%| OLD2[Current Version]
-        LB2 -->|25%| NEW2[New Version]
+    subgraph P2["Phase 2 - 25%"]
+        LB2[Load Balancer]
+        OLD2[Current Version]
+        NEW2[New Version]
+        LB2 -->|75%| OLD2
+        LB2 -->|25%| NEW2
     end
     
-    subgraph Phase 3 - 50%
-        LB3[Load Balancer] -->|50%| OLD3[Current Version]
-        LB3 -->|50%| NEW3[New Version]
+    subgraph P3["Phase 3 - 50%"]
+        LB3[Load Balancer]
+        OLD3[Current Version]
+        NEW3[New Version]
+        LB3 -->|50%| OLD3
+        LB3 -->|50%| NEW3
     end
     
-    subgraph Phase 4 - 100%
-        LB4[Load Balancer] -->|100%| NEW4[New Version]
+    subgraph P4["Phase 4 - 100%"]
+        LB4[Load Balancer]
+        NEW4[New Version]
+        LB4 -->|100%| NEW4
     end
     
-    Phase 1 -.->|Monitor metrics| Phase 2
-    Phase 2 -.->|Monitor metrics| Phase 3
-    Phase 3 -.->|Monitor metrics| Phase 4
+    P1 -.->|Monitor metrics| P2
+    P2 -.->|Monitor metrics| P3
+    P3 -.->|Monitor metrics| P4
+    
+    style P1 fill:#E3F2FD
+    style P2 fill:#BBDEFB
+    style P3 fill:#90CAF9
+    style P4 fill:#42A5F5
 ```
 
 #### 5.10.4 Мониторинг и алертинг
