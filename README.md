@@ -1,2 +1,15 @@
-# MyCafe
-No-code cafe all-in-one platform
+# se_2025
+
+`MyCafe` — no-code платформа для автоматической генерации нативных мобильных приложений, сайтов и экосистемы управления для кафе и ресторанов.
+
+## 👥 Команда:
+
+- Деружинский Дмитрий
+- Захаров Владимир
+- Никоненко Егор
+- Токарев Алексей
+- Шатохин Лев
+
+## 📊 Файлы
+
+[Ссылка на презентацию](https://docs.google.com/presentation/d/1lLUUN5CAAjvYUnxMoFmDrBJccUOZje1x_ZGpHkjazYo/edit?usp=sharing)
